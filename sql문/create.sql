@@ -4,14 +4,14 @@ db settings
 mysql -u root
 
 create database team07;
-create user 'team07'@'localhost' identified my 'team07';
-grant all privileges on team07* to 'team07'@'localhost';
+create user 'team07'@'localhost' identified by 'team07';
+grant all privileges on team07.* to 'team07'@'localhost';
 
 mysql -u team07 -p team07
 */
 
 create table users(
-    userId varchar(255) unique not null,
+    userId varchar(255) not null,
     pwd varchar(255) not null,
     userName varchar(255) not null,
     introduction varchar(255),
@@ -19,54 +19,54 @@ create table users(
 );
 
 create table keyword(
-    keywordId int unique not null,
+    keywordId int not null,
     keywordName varchar(255),
     primary key (keywordId)
 );
 
 create table country(
-    countryId int unique not null,
+    countryId varchar(10) not null,
     countryName varchar(255),
     primary key (countryId)
 );
 
 create table company(
-    companyId int unique not null,
+    companyId int not null,
     companyName varchar(255),
     primary key (companyId)
 );
 
 create table actor(
-    actorId int unique not null,
+    actorId int not null,
     actorName varchar(255),
     primary key (actorId)
 );
 
 create table director(
-    directorId int unique not null,
+    directorId int not null,
     directorName varchar(255),
     primary key (directorId)
 );
 
 create table genre(
-    genreId int unique not null,
+    genreId int not null,
     genreName varchar(255),
     primary key (genreId)
 );
 
 create table movie_metadata(
-    movieId int unique not null,
+    movieId int not null,
     adult boolean,
     popularity float,
     originalTitle varchar(255),
-    overview varchar,
-    tagline varchar,
+    overview varchar(20000),
+    tagline varchar(20000),
     openDt date,
-    posterPath varchar,
+    posterPath varchar(10000),
     directorId int,
     genreId int,
-    countryId int,
-    runtime int
+    countryId varchar(10),
+    runtime int,
     primary key (movieId),
     foreign key (directorId) references director(directorId) on update cascade on delete set null,
     foreign key (genreId) references genre(genreId) on update cascade on delete set null,
@@ -74,7 +74,7 @@ create table movie_metadata(
 )
 
 create table review(
-    userId int not null,
+    userId varchar(255) not null,
     movieId int not null,
     rating float not null,
     comments varchar(300),
@@ -95,7 +95,7 @@ create table describes(
 create table characters(
     actorId int not null,
     movieId int not null,
-    characterName varchar,
+    characterName varchar(255),
     characterOrder int not null,
     primary key (actorId, movieId),
     foreign key (actorId) references actor(actorId) on update cascade on delete set null,
