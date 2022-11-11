@@ -71,16 +71,16 @@ create table movie_metadata(
     foreign key (directorId) references director(directorId) on update cascade on delete set null,
     foreign key (genreId) references genre(genreId) on update cascade on delete set null,
     foreign key (countryId) references country(countryId) on update cascade on delete set null
-)
+);
 
 create table review(
     userId varchar(255) not null,
     movieId int not null,
-    rating float not null,
+    rating float(2,2) not null,
     comments varchar(300),
     reviewTime datetime not null,
     primary key (userId, movieId),
-    foreign key (userId) references user(userId) on update cascade on delete set null,
+    foreign key (userId) references users(userId) on update cascade,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
 );
 
@@ -98,7 +98,7 @@ create table characters(
     characterName varchar(255),
     characterOrder int not null,
     primary key (actorId, movieId),
-    foreign key (actorId) references actor(actorId) on update cascade on delete set null,
+    foreign key (actorId) references actor(actorId) on update cascade,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
 );
 
@@ -106,6 +106,6 @@ create table movie_company(
     companyId int not null,
     movieId int not null,
     primary key (companyId, movieId),
-    foreign key (companyId) references company(companyId) on update cascade on delete set null,
+    foreign key (companyId) references company(companyId) on update cascade,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
 );
