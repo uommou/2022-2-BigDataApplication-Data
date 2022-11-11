@@ -1,0 +1,12 @@
+drop table movie_company;
+drop table characters;
+drop table describes;
+drop table review;
+drop table movie_metadata;
+drop table genre;
+drop table director;
+drop table actor;
+drop table company;
+drop table country;
+drop table keyword;
+drop table users;
