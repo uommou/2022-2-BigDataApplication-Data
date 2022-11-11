@@ -10,8 +10,7 @@ grant all privileges on team07* to 'team07'@'localhost';
 mysql -u team07 -p team07
 */
 
---create tables
-create table user(
+create table users(
     userId varchar(255) unique not null,
     pwd varchar(255) not null,
     userName varchar(255) not null,
