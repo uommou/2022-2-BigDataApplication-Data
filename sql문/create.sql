@@ -76,7 +76,7 @@ create table movie_metadata(
 create table review(
     userId varchar(255) not null,
     movieId int not null,
-    rating float(2,2) not null,
+    rating float not null,
     comments varchar(300),
     reviewTime datetime not null,
     primary key (userId, movieId),
