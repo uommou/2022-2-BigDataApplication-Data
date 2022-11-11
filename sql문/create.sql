@@ -78,7 +78,7 @@ create table review(
     movieId int not null,
     rating float not null,
     comments varchar(300),
-    reviewTime smalldatetime not null,
+    reviewTime datetime not null,
     primary key (userId, movieId),
     foreign key (userId) references user(userId) on update cascade on delete set null,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
@@ -92,11 +92,11 @@ create table describes(
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
 );
 
-create table character(
+create table characters(
     actorId int not null,
     movieId int not null,
     characterName varchar,
-    order int not null,
+    characterOrder int not null,
     primary key (actorId, movieId),
     foreign key (actorId) references actor(actorId) on update cascade on delete set null,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
