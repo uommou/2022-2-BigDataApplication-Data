@@ -109,3 +109,5 @@ create table movie_company(
     foreign key (companyId) references company(companyId) on update cascade,
     foreign key (movieId) references movie_metadata(movieId) on update cascade on delete cascade
 );
+
+create index idx_actorId on actor(actorId);
